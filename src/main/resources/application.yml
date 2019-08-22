@@ -1,6 +1,6 @@
 
 auth0:
-  audience: https://dev-7panm366.auth0.com/api/v2/
+  audience: oO6pfoTQAfxJmkUa5se1txos5liAbYZa
 spring:
   security:
     oauth2:

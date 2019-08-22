@@ -2,6 +2,7 @@ package com.example.demo;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
@@ -21,12 +22,15 @@ public class ProfileService {
     private UserProfile defaultProfile(JwtAuthenticationToken details) {
         Instant now = Instant.now();
         return UserProfile.builder()
-                .id(details.getToken().getClaimAsString("azp"))
-//                .username(details.getEmail())
-//                .email(details.getEmail())
+                .id(details.getToken().getClaimAsString("sub"))
+                .username(details.getToken().getClaimAsString("nickname"))
+                .firstName(details.getToken().getClaimAsString("given_name"))
+                .lastName(details.getToken().getClaimAsString("family_name"))
+                .email(details.getToken().getClaimAsString("email"))
+                .avatar(details.getToken().getClaimAsString("picture"))
                 .createdOn(details.getToken().getIssuedAt())
                 .expiredOn(details.getToken().getExpiresAt())
-//                .roles(details.getStringAuthorities())
+//                .roles(details.getAuthorities())
                 .build();
     }
 }
