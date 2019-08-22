@@ -6,4 +6,5 @@ spring:
     oauth2:
       resourceserver:
         jwt:
+          jwk-set-uri: https://dev-7panm366.auth0.com/.well-known/jwks.json
           issuer-uri: https://dev-7panm366.auth0.com/
